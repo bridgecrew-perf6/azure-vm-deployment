@@ -13,12 +13,13 @@ $nsgName = "testNetworkSecurityGroup"
 
 # VM variables
 $vmName = "testVM1"
-$vmSize = "Standard_B2s"
+$vmSize = "Standard_B1s"
 $vmUserName = "azureuser"
 
 # Storage variables
 $storageAccountName = "shstorageaccount01"
 $skuName = "Standard_LRS" # Standard Locally Redundant Storage
+$osDiskName = "OsDisk"
 
 # Create variable for VM password - empty we will be using RSA key
 $VMPassword = ' '
@@ -115,6 +116,17 @@ Set-AzVMSourceImage `
   -Version "latest" | `
 Add-AzVMNetworkInterface `
   -Id $nic.Id
+
+$osDiskUri = '{0}vhds/{1}-{2}.vhd' -f `
+  $storageAccount.PrimaryEndpoints.Blob.ToString(),`
+  $vmName.ToLower(), `
+  $osDiskName
+
+$vmConfig = Set-AzVMOSDisk `
+  -VM $vmConfig `
+  -Name $osDiskName `
+  -VhdUri $OsDiskUri `
+  -CreateOption FromImage
 
 # Configure the SSH key
 $sshPublicKey = cat ~/.ssh/id_rsa.pub
