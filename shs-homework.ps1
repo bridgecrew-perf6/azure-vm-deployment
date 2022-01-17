@@ -67,23 +67,23 @@ $pip = New-AzPublicIpAddress `
 
 #following is unwanted in this assignment
 # Create an inbound network security group rule for port 22
-# $nsgRuleSSH = New-AzNetworkSecurityRuleConfig `
-#   -Name "testNetworkSecurityGroupRuleSSH" `
-#   -Protocol "Tcp" `
-#   -Direction "Inbound" `
-#   -Priority 1000 `
-#   -SourceAddressPrefix * `
-#   -SourcePortRange * `
-#   -DestinationAddressPrefix * `
-#   -DestinationPortRange 22 `
-#   -Access "Allow"
+$nsgRuleSSH = New-AzNetworkSecurityRuleConfig `
+  -Name "testNetworkSecurityGroupRuleSSH" `
+  -Protocol "Tcp" `
+  -Direction "Inbound" `
+  -Priority 1000 `
+  -SourceAddressPrefix * `
+  -SourcePortRange * `
+  -DestinationAddressPrefix * `
+  -DestinationPortRange 22 `
+  -Access "Deny"
 
 # # Create a network security group
-# $nsg = New-AzNetworkSecurityGroup `
-#   -ResourceGroupName $resourceGroupName `
-#   -Location $location `
-#   -Name $nsgName `
-#   -SecurityRules $nsgRuleSSH
+$nsg = New-AzNetworkSecurityGroup `
+  -ResourceGroupName $resourceGroupName `
+  -Location $location `
+  -Name $nsgName `
+  -SecurityRules $nsgRuleSSH
 
 
 # Create a virtual network card and associate with public IP address and NSG
