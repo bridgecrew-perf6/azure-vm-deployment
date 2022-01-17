@@ -20,7 +20,7 @@ $vmUserName = "azureuser"
 $storageAccountName = "shstorageaccount01"
 $skuName = "Standard_LRS" # Standard Locally Redundant Storage
 
-# Create variable for VM password - empty ve wil be using RSA key
+# Create variable for VM password - empty we will be using RSA key
 $VMPassword = ' '
 
 # Prompt for deployment name
