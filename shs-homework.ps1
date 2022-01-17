@@ -13,7 +13,7 @@ $nsgName = "testNetworkSecurityGroup"
 
 # VM variables
 $vmName = "testVM1"
-$vmSize = "Standard_B1s"
+$vmSize = "Standard_B2s"
 $vmUserName = "azureuser"
 
 # Storage variables
@@ -119,7 +119,7 @@ Add-AzVMNetworkInterface `
 # Configure the SSH key
 $sshPublicKey = cat ~/.ssh/id_rsa.pub
 Add-AzVMSshPublicKey `
-  -VM $vmconfig `
+  -VM $vmConfig `
   -KeyData $sshPublicKey `
   -Path "/home/$vmUserName/.ssh/authorized_keys"
 
