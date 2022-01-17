@@ -126,7 +126,7 @@ Add-AzVMSshPublicKey `
 
 New-AzVM `
   -ResourceGroupName $resourceGroupName `
-  -Location westeurope `
+  -Location $location `
   -VM $vmConfig
 
 
